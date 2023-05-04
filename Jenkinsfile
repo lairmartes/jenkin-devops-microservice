@@ -17,4 +17,16 @@ pipeline {
 			}
 		}
 	}
+	
+	post {
+		always {
+			echo 'I will alwyas be here... and will always run'
+		}
+		success {
+			echo 'I run ONLY when everything went well'
+		}
+		failure {
+			echo 'I run ONLY when something whent WRONG'
+		}
+	}
 }
