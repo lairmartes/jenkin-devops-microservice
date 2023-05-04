@@ -9,6 +9,7 @@ pipeline {
 				echo "$PATH"
 				echo "Buiild Number: - $env.BUILD_NUMBER"
 				echo "Job Name: $env.JOB_NAME"
+				echo "<==== End of Build - Lair"
 			}
 		}
 		stage('Test') {
