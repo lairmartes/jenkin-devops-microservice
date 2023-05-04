@@ -47,7 +47,7 @@ pipeline {
 			steps {
 				// docker build -t lairmartes/currency-exchange-devops:$env.BUILD_TAG
 				script {
-					docker.build("lairmartes/currency-exchange-devops:${env.BUILD_TAG}")
+					dockerImage = docker.build("lairmartes/currency-exchange-devops:${env.BUILD_TAG}")
 				}
 			}
 		}
