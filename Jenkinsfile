@@ -50,6 +50,7 @@ pipeline {
 					docker.build("lairmartes/currency-exchange-devops:${env.BUILD_TAG}")
 				}
 			}
+		}
 		
 
 		stage('Push Docker Image') {
@@ -60,9 +61,7 @@ pipeline {
 						dockerImage.push('latest')
 					}
 				}
-
 			}
-
 		}
 	}
 	
