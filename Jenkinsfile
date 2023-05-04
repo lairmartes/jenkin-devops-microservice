@@ -1,6 +1,5 @@
 pipeline {
 	agent any
-	// agent { docker { image 'maven:3.6.3' } }
 	environment {
 		dockerHome = tool 'myDocker'
 		mavenHome = tool 'myMaven'
@@ -8,7 +7,7 @@ pipeline {
 		PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
 	}
 	stages {
-		stage('Build') {
+		stage('Checkout') {
 			steps {
 				sh "mvn --version"
 				sh "docker version"
@@ -19,14 +18,19 @@ pipeline {
 				echo "<==== End of Build - Lair"
 			}
 		}
+		stage ('Compile') {
+			steps {
+				sh "mvn clean compile"
+			}
+		}
 		stage('Test') {
 			steps {
-				echo "Test - Lair"
+				sh "mvn test"
 			}
 		}
 		stage('Integration Test') {
 			steps {
-				echo "Integration Test - Lair"
+				echo "mvn failsafe:integration-test failsafe:verify"
 			}
 		}
 	}
